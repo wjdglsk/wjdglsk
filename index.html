@@ -1,0 +1,30 @@
+<script>
+function randomFortune() {
+    const fortunes = [
+        "오늘 집중력 좋음",
+        "암기력 상승",
+        "시험운 안정적",
+        "컨디션 관리 주의"
+    ];
+
+    // 자바식 랜덤 비슷하게
+    function JavaLikeRandom(seed) {
+        let x = seed;
+        return function() {
+            x = (x * 1664525 + 1013904223) % 4294967296;
+            return x;
+        };
+    }
+
+    const r = JavaLikeRandom(Date.now());
+    const idx = r() % fortunes.length;
+    return fortunes[idx];
+}
+
+function show() {
+    document.getElementById("res").textContent = randomFortune();
+}
+</script>
+
+<button onclick="show()">운세 보기</button>
+<div id="res"></div>
